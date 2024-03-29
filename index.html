@@ -210,27 +210,39 @@
         </div>
  
     </main>
+  <script>
+        // Initialize Web3.js
+        const web3 = new Web3(Web3.givenProvider);
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        // Contract address
+        const contractAddress = '0x123...';
+
+        // Contract ABI
+        const contractABI = [{
+            // Define contract ABI here
+        }];
+
+        // Initialize contract object
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+      
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
 <script>
-  window.addEventListener('load', async () => {
-    if (window.ethereum) {
-        window.web3 = new Web3(ethereum);
-        try {
-            await ethereum.request({ method: 'eth_requestAccounts' });
-            // Utilisez le fournisseur de réseau BSC Testnet
-            web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org'));
-            initBuyButton();
-        } catch (err) {
-            $('#status').html('Access denied');
+    window.addEventListener('load', async () => {
+        if (window.ethereum) {
+            window.web3 = new Web3(ethereum);
+            try {
+                await ethereum.request({ method: 'eth_requestAccounts' });
+                initBuyButton();
+            } catch (err) {
+                $('#status').html('Access denied');
+            }
+        } else {
+            $('#status').html('No Ethereum provider found');
         }
-    } 
-        $('#status').html('No Ethereum provider found');
-    }
-});
+    });
 
     const initBuyButton = () => {
         $('.buy-button').click(() => {
@@ -256,6 +268,7 @@
         });
     };
 </script>
+
 
 
                 <div class="flex justify-center items-center gap-x-3 mx-auto w-full">
