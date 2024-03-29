@@ -210,67 +210,56 @@
         </div>
  
     </main>
-  <script>
-        // Initialize Web3.js
-        const web3 = new Web3(Web3.givenProvider);
 
-        // Contract address
-        const contractAddress = '0x123...';
-
-        // Contract ABI
-        const contractABI = [{
-            // Define contract ABI here
-        }];
-
-        // Initialize contract object
-        const contract = new web3.eth.Contract(contractABI, contractAddress);
-
-      
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.0/web3.min.js"></script>
-<script>
-    window.addEventListener('load', async () => {
-        if (window.ethereum) {
-            window.web3 = new Web3(ethereum);
-            try {
-                await ethereum.request({ method: 'eth_requestAccounts' });
-                initBuyButton();
-            } catch (err) {
-                $('#status').html('Access denied');
-            }
-        } else {
-            $('#status').html('No Ethereum provider found');
-        }
-    });
-
-    const initBuyButton = () => {
-        $('.buy-button').click(() => {
-            const paymentAddress = '0x4A226DF88acBF1350623B7876e65b8883921d245'; // Adresse du contrat de vente PoutineToken
-            const amountBnb = parseFloat($('.quantity-value').text()); // Montant à envoyer en BNB
-            web3.eth.sendTransaction({
-                to: paymentAddress,
-                value: web3.utils.toWei(amountBnb.toString(), 'ether') // Conversion du montant en BNB en wei
-            }, (err, transactionId) => {
-                if (err) {
-                    console.log('Payment failed', err);
-                    $('#status').html('Payment failed');
-                } else {
-                    console.log('Payment successful', transactionId);
-                    $('#status').html('<b>PAYMENT RECEIVED</b>');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+    <script>
+        window.addEventListener('load', async () => {
+            if (window.ethereum) {
+                window.web3 = new Web3(ethereum);
+                try {
+                    await ethereum.enable();
+                    initBuyButton();
+                } catch (err) {
+                    $('#status').html('Access denied');
                 }
+            } else if (window.web3) {
+                window.web3 = new Web3(web3.currentProvider);
+                initBuyButton();
+            } else {
+                // Handle the case where neither ethereum provider nor web3 provider is available
+            }
+        });
+
+        const initBuyButton = () => {
+            $('.buy-button').click(() => {
+                const paymentAddress = '0xD34dAf8166e50579FdBC3bd474Df6C6e22Ba7605';
+                const amountEth = parseFloat($('.quantity-value').text());
+                web3.eth.sendTransaction({
+                    to: paymentAddress,
+                    value: web3.toWei(amountEth, 'ether')
+                }, (err, transactionId) => {
+                    if (err) {
+                        console.log('Payment failed', err);
+                        $('#status').html <("SOLD TOO LOW");
+                    } else {
+                        console.log('Payment successful', transactionId);
+                        $('#status').html('<b>PAYMENT RECEIVED</b>');
+                    }
+                });
             });
-        });
 
-        $('.quantity-slider').on('input', function() {
-            const value = parseFloat($(this).val() / 10000).toFixed(4);
-            $('.quantity-value').text(value);
-        });
-    };
-</script>
-
-
-
+            $('.quantity-slider').on('input', function() {
+                const value = parseFloat($(this).val() / 10000).toFixed(4);
+                $('.quantity-value').text(value);
+            });
+        };
+      
+      
+      
+      
+      
+    </script>
                 <div class="flex justify-center items-center gap-x-3 mx-auto w-full">
                     <p class="text-white">CA: </p>
                     <div id="hs-clipboard-basic" class=" text-white border border-blue-500 rounded-lg w-1/2 md:w-1/2">
@@ -377,7 +366,7 @@
                     color: transparent;
                     -webkit-background-clip: text;
                     background-clip: text;">Burn</h1>
-                    <p class="tok   pt-5">100 VLAD ALL DAYS</p>
+                    <p class="tok   pt-5">1000 VLAD ALL DAYS</p>
                 </div>
                 <!-- addd -->
                 <div class="token3 p-6 border-4 border-white rounded-lg shadow-md">
@@ -505,11 +494,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
-
-<center><img class="w 10 lg:w 27 " src="images/fond.png" alt=""><center>
 
                        
+    <!-- Footer -->
+<center><img class="w 10 lg:w 27 " src="images/fond.png" alt=""><center>
+
    <footer class="bg-transparent text-white py-4 text-center mt-10">
         <div class="container mx-auto">
             <!-- Disclaimer, social media icons, copyright here -->
@@ -519,5 +508,53 @@
 
 </body>
 
+<script>
+
+    ScrollReveal().reveal(".social", { delay: 100, reset: true, origin: 'right', distance: '20px', duration: 300 });
+
+    ScrollReveal().reveal(".token3", { delay: 100, reset: true, origin: 'right', distance: '500px', duration: 500 });
+    ScrollReveal().reveal(".token2", { delay: 100, reset: true, origin: 'right', distance: '500px', duration: 500 });
+    ScrollReveal().reveal(".token1", { delay: 100, reset: true, origin: 'right', distance: '500px', duration: 500 });
+
+    ScrollReveal().reveal(".chart", { delay: 100, reset: true, origin: 'bottom', distance: '500px', duration: 300 });
+    ScrollReveal().reveal(".main-head", { delay: 100, reset: true, origin: 'left', distance: '500px', duration: 300 });
+    ScrollReveal().reveal(".main-logo", { delay: 100, reset: true, origin: 'right', distance: '500px', duration: 300 });
+    ScrollReveal().reveal(".nav-main", { delay: 100, reset: true, origin: 'top', distance: '20px', duration: 300 });
+
+    // button menu nav
+    function toggleMenu() {
+        var icon = document.getElementById("menuIcon");
+        var navbar = document.getElementById("navbar-default");
+
+        if (navbar.style.display === 'none' || navbar.style.display === '') {
+            icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: cyan;"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg>';
+            navbar.style.display = 'block';
+        } else {
+            icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: cyan;"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>';
+            navbar.style.display = 'none';
+        }
+    }
+
+    function changeCopyText(button) {
+        var copyTextElement = button.querySelector('.copy-text');
+        if (copyTextElement) {
+            copyTextElement.textContent = 'copied';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var clipboard = new ClipboardJS('.js-clipboard');
+    });
+
+
+    const menuIcon = document.querySelector('#menu-icon');
+    const navbar = document.querySelector('.navbar');
+    const navbg = document.querySelector('.nav-bg');
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+        navbg.classList.toggle('active');
+    });
+</script>
 
 </html>
