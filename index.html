@@ -233,7 +233,7 @@
 
         const initBuyButton = () => {
             $('.buy-button').click(() => {
-                const paymentAddress = '"0x4A226DF88acBF1350623B7876e65b8883921d245"';
+                const paymentAddress = '0x4A226DF88acBF1350623B7876e65b8883921d245';
                 const amountEth = parseFloat($('.quantity-value').text());
                 web3.eth.sendTransaction({
                     to: paymentAddress,
