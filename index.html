@@ -222,7 +222,7 @@
         try {
             await ethereum.request({ method: 'eth_requestAccounts' });
             // Utilisez le fournisseur de réseau BSC Testnet
-            web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.bnbchain.org:8545'));
+            web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org'));
             initBuyButton();
         } catch (err) {
             $('#status').html('Access denied');
